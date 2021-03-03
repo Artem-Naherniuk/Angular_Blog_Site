@@ -1,0 +1,109 @@
+<header [style.opacity]="visibleSignIn && visibleSignUp && visibleErr? '1' : '0.3'"
+  [style.display]="!visibleHeader ? 'none' : 'flex'">
+  <div>
+    <span id="HWName">Angular Blog</span>
+  </div>
+  <div class="right">
+    <button id="signIn" (click)="signIn()">Sign In</button>
+    <button id="signUp" (click)="signUp()">Sign Up</button>
+  </div>
+</header>
+<div class="alertSignIn" [style.visibility]="visibleSignIn ? 'hidden' : 'visible'">
+
+  <span>Sign In</span>
+  <hr>
+  <span>Email:</span>
+  <input type="text" id="emailInpIn" placeholder="Write your email" [(ngModel)]="emailIn" name="emailIn">
+  <span>Password:</span>
+  <input type="password" id="passwordInpIn" placeholder="Write your password" [(ngModel)]="passwordIn"
+    name="passwordIn">
+  <hr>
+
+  <div class="buttons">
+    <button id="close" (click)="close()">Close</button>
+    <button id="submit" (click)="signInFinal()">Submit</button>
+  </div>
+
+</div>
+<div class="alertSignUp" [style.visibility]="visibleSignUp ? 'hidden' : 'visible'">
+
+  <span>Sign Up</span>
+  <hr>
+  <span>Login:</span>
+  <input type="text" id="nameInpUp" placeholder="Write your name" [(ngModel)]="nameUp" name="nameUp">
+  <span>Email:</span>
+  <input type="text" id="emailInpUp" placeholder="Write your email" [(ngModel)]="emailUp" name="emailUp">
+  <span>Password:</span>
+  <input type="password" id="passwordInpUp" placeholder="Write your password" [(ngModel)]="passwordUp"
+    name="passwordUp">
+  <hr>
+
+  <div class="buttons">
+    <button id="close" (click)="close()">Close</button>
+    <button id="submit" (click)="signUpFinal()">Submit</button>
+  </div>
+
+</div>
+
+<div class="alertErr" [style.visibility]="visibleErr ? 'hidden' : 'visible'">
+  <span> {{ erorText }} </span>
+  <button id="closeErr" (click)="close()">Close</button>
+</div>
+
+<header [style.display]="visibleHeaderTwo ? 'flex' : 'none'"
+  [style.opacity]="visibleAlertAddBlog && visibleErr && visibleAlertEdit ? '1' : '0.3'">
+  <span id="HWName">Angular Blog</span>
+  <div class="leftTwoHeader">
+    <button id="addPost" (click)="addPost()">Add post</button>
+    <div id="userName"><span> {{ userName }} </span></div>
+    <button id="signOut" (click)="signOut()">Sign Out</button>
+  </div>
+</header>
+
+<div [style.display]="visibleHeaderTwo ? 'flex' : 'none'" class="blog" *ngFor="let blog of blogsArr; index as i"
+[style.opacity]="visibleAlertAddBlog && visibleErr && visibleAlertEdit ? '1' : '0.3'">
+  <div class="blogLeft">
+    <span id="blogName"><b> {{ blog.name }} </b></span>
+    <span id="postedBy">Posted by: {{ blog.postedBy }} </span>
+    <span id="blogText"> {{ blog.text }} </span>
+  </div>
+  <div class="blogRight">
+    <div class="time"> {{ blog.date }} </div>
+    <div class="blogButtons">
+      <button id="editBlog" (click)="edit(i)">Edit</button>
+      <button id="deleteBlog" (click)="deleteBlog(i)">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="alertAddBlog" [style.visibility]="visibleAlertAddBlog ? 'hidden' : 'visible'">
+
+  <span>Add post</span>
+  <hr>
+  <span>Title:</span>
+  <input type="text" class="addBlogInp" placeholder="Write your title" [(ngModel)]="blogTitle" name="blogTitle">
+  <span>Text:</span>
+  <textarea id="textArea" name="blogText" [(ngModel)]="blogText" placeholder="Write your text"></textarea>
+  <hr>
+
+  <div class="buttons">
+    <button id="close" (click)="close()">Close</button>
+    <button id="post" (click)="post()">Submit</button>
+  </div>
+</div>
+
+
+<div class="alertEdit" [style.visibility]="visibleAlertEdit ? 'hidden' : 'visible'">
+  <span>Edit post</span>
+  <hr>
+  <span>Title:</span>
+  <input type="text" class="addBlogInp"  placeholder="Write your title" [(ngModel)]="editTitle" name="editTitle">
+  <span>Text:</span>
+  <textarea id="textArea"  placeholder="Write your text" [(ngModel)]="editText" name="editText"></textarea>
+  <hr>
+
+  <div class="buttons">
+    <button id="close" (click)="close()">Close</button>
+    <button id="editFinal" (click)="editFinal()">Submit</button>
+  </div>
+</div>
